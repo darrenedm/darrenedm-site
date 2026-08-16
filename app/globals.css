@@ -1,5 +1,5 @@
 @import "../styles/tokens.css";
-@import "../styles/worlds/ml.css";
+@import "../styles/worlds/data.css";
 @import "../styles/worlds/dj.css";
 @import "../styles/worlds/games.css";
 @import "../styles/worlds/sports.css";
@@ -294,8 +294,8 @@ p {
 /* Hovering a board previews its world in the hero — no JavaScript.
    :has() lets a parent respond to a descendant's state, which is
    exactly the ancestor-selector CSS lacked for twenty years. */
-.home:has(.board[data-board="ml"]:hover) .accent {
-  color: var(--w-ml);
+.home:has(.board[data-board="data"]:hover) .accent {
+  color: var(--w-data);
 }
 .home:has(.board[data-board="dj"]:hover) .accent {
   color: var(--w-dj);
@@ -308,8 +308,8 @@ p {
 }
 
 /* Each board carries its own hue without needing a world wrapper. */
-.board[data-board="ml"] {
-  --world: var(--w-ml);
+.board[data-board="data"] {
+  --world: var(--w-data);
 }
 .board[data-board="dj"] {
   --world: var(--w-dj);
@@ -417,6 +417,23 @@ p {
   font-size: 0.93rem;
   color: var(--bone-dim);
   max-width: var(--measure);
+}
+
+.entry-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s1);
+  margin-top: 0.15rem;
+}
+
+.tag {
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+  border: 1px solid var(--rule-2);
+  border-radius: 3px;
+  padding: 0.1em 0.4em;
 }
 
 .draft-flag {

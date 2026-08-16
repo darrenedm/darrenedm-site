@@ -1,6 +1,6 @@
 # darrenedm-site
 
-Personal site. Four themed worlds — machine learning, DJing, games, sport —
+Personal site. Four themed worlds — data science, DJing, games, sport —
 running on one shared design system, one content pipeline, one deploy.
 
 Next.js (App Router) · TypeScript · MDX content validated with Zod · Vercel.
@@ -46,7 +46,7 @@ by Zod at build time, so a bad file **fails the build** rather than shipping a
 broken page — with an error naming the file, the field and the fix.
 
 ```
-content/ml/my-project.mdx   →   /ml/my-project
+content/data/my-project.mdx   →   /data/my-project
 ```
 
 Set `status: draft` to keep something in version control without publishing it:

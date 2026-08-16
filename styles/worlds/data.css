@@ -1,9 +1,9 @@
-/* Machine learning — modelling the system.
+/* Data science — modelling the system.
    Clean grid, cool blue, nothing decorative. It should feel like a
    well-kept notebook: the section a recruiter opens first. */
 
-[data-world="ml"] {
-  --world:      var(--w-ml);
+[data-world="data"] {
+  --world:      var(--w-data);
   --world-soft: rgba(91, 155, 245, 0.09);
   --world-line: rgba(91, 155, 245, 0.28);
 

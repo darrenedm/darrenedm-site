@@ -4,7 +4,7 @@ import { z } from "zod";
  * The four themed worlds. Each has a route, a theme file in
  * styles/worlds/, and a schema extension below.
  */
-export const WORLDS = ["ml", "dj", "games", "sports"] as const;
+export const WORLDS = ["data", "dj", "games", "sports"] as const;
 export type World = (typeof WORLDS)[number];
 
 /**
@@ -66,7 +66,7 @@ const call = z.object({
 });
 
 export const schemas = {
-  ml: base.extend({
+  data: base.extend({
     repo: z.string().optional(),
     paper: z.string().optional(),
     stack: z.array(z.string()).default([]),
@@ -83,6 +83,22 @@ export const schemas = {
   }),
 
   games: base.extend({
+    /**
+     * Design-led. "playing" entries are still welcome, but the section
+     * leads with what you build: a TCG or a board game is a system of
+     * strategic interaction under constraints, which is the thesis
+     * expressed more directly than anywhere else on the site.
+     */
+    kind: z.enum(["design", "playing"]).default("design"),
+    /** design entries */
+    players: z.string().optional(),
+    playtime: z.string().optional(),
+    mechanics: z.array(z.string()).default([]),
+    stage: z
+      .enum(["concept", "prototype", "playtesting", "shelved", "released"])
+      .optional(),
+    call: call.optional(),
+    /** playing entries */
     platform: z.string().optional(),
     hoursPlayed: z.number().optional(),
     rating: z.number().min(0).max(10).optional(),
@@ -108,16 +124,16 @@ export const WORLD_META: Record<
   World,
   { name: string; role: string; kicker: string }
 > = {
-  ml: {
-    name: "Machine learning",
+  data: {
+    name: "Data science",
     role: "Modelling the system",
     kicker: "Latest",
   },
   dj: { name: "DJing", role: "Reading the room, live", kicker: "Latest set" },
   games: {
     name: "Games",
-    role: "Strategy, noise removed",
-    kicker: "Playing now",
+    role: "Designing the board",
+    kicker: "In progress",
   },
   sports: { name: "Sport", role: "The shape, not the ball", kicker: "Latest" },
 };

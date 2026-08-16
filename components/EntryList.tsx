@@ -29,6 +29,15 @@ export function EntryList<C extends Collection>({
           <span className="entry-body">
             <span className="entry-title">{entry.data.title}</span>
             <span className="entry-summary">{entry.data.summary}</span>
+            {entry.data.tags.length > 0 && (
+              <span className="entry-tags">
+                {entry.data.tags.map((tag) => (
+                  <span className="tag" key={tag}>
+                    {tag}
+                  </span>
+                ))}
+              </span>
+            )}
             {entry.data.status === "draft" && (
               <span className="draft-flag">Draft</span>
             )}

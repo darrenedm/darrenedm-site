@@ -25,7 +25,7 @@
   /* ── the world palette, declared once ──
      Named here so the home page can reference a world's hue without
      being inside that world (see the :has() rules in globals.css). */
-  --w-ml:     #5b9bf5;
+  --w-data:   #5b9bf5;
   --w-dj:     #f0479b;
   --w-games:  #3fd98a;
   --w-sports: #ff8038;
