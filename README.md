@@ -8,9 +8,13 @@ Next.js (App Router) · TypeScript · MDX content validated with Zod · Vercel.
 ## The idea
 
 Four interests presented flat read as unfocused rather than broad. So the site
-argues one thing: they are four boards for the same instinct — read the system,
-model the people in it, make the call. Each world looks different; the thing
-holding them together is the architecture.
+frames them as one curiosity pointed in four directions — finding out how
+things work, and enjoying the company on the way.
+
+The palette is ocean, taken literally: foam and daylight at the surface, deep
+water below, and the four sections as things living at different depths — deep
+water, bioluminescence, reef, coral. The home page opens in the deep and the
+rest of the site surfaces into light.
 
 ## How the theming works
 

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { Shell } from "@/components/Shell";
 import { Mdx } from "@/components/Mdx";
 import { TheCall } from "@/components/TheCall";
 import { formatDate, getEntries, getEntry } from "@/lib/content/loader";
@@ -52,28 +53,32 @@ export default async function EntryPage({
   const call = "call" in data ? data.call : undefined;
 
   return (
-    <article>
-      <header className="article-head">
-        <p className="eyebrow">
-          <span className="eyebrow-world">{meta.name}</span> · {meta.role} ·{" "}
-          <time dateTime={data.date.toISOString()}>
-            {formatDate(data.date)}
-          </time>
-        </p>
-        <h1>{data.title}</h1>
-        <p className="article-standfirst">{data.summary}</p>
-
-        {metrics.length > 0 && (
-          <dl className="metrics">
-            {metrics.map((m) => (
-              <div className="metric" key={m.label}>
-                <dt>{m.label}</dt>
-                <dd className={m.todo ? "todo" : undefined}>{m.value}</dd>
-              </div>
-            ))}
-          </dl>
-        )}
-      </header>
+    <Shell
+      world={world as World}
+      tone="tint"
+      hero={
+        <header className="article-head">
+          <p className="label">
+            <span className="label-world">{meta.name}</span> ·{" "}
+            <time dateTime={data.date.toISOString()}>
+              {formatDate(data.date)}
+            </time>
+          </p>
+          <h1>{data.title}</h1>
+          <p className="article-standfirst">{data.summary}</p>
+        </header>
+      }
+    >
+      {metrics.length > 0 && (
+        <dl className="metrics">
+          {metrics.map((m) => (
+            <div className="metric" key={m.label}>
+              <dt>{m.label}</dt>
+              <dd className={m.todo ? "todo" : undefined}>{m.value}</dd>
+            </div>
+          ))}
+        </dl>
+      )}
 
       <Mdx source={entry.body} />
 
@@ -85,6 +90,6 @@ export default async function EntryPage({
           cost={call.cost}
         />
       )}
-    </article>
+    </Shell>
   );
 }

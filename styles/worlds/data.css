@@ -1,11 +1,11 @@
-/* Data science — modelling the system.
-   Clean grid, cool blue, nothing decorative. It should feel like a
-   well-kept notebook: the section a recruiter opens first. */
+/* Data science — deep water, where the modelling happens.
+   The clearest of the four. Generous whitespace, tight type, nothing
+   decorative: this is the section someone opens to judge the work. */
 
 [data-world="data"] {
-  --world:      var(--w-data);
-  --world-soft: rgba(91, 155, 245, 0.09);
-  --world-line: rgba(91, 155, 245, 0.28);
+  --world: var(--w-data);
+  --world-soft: rgba(26, 126, 168, 0.07);
+  --world-line: rgba(26, 126, 168, 0.26);
 
-  --radius: 6px;
+  --radius: 10px;
 }

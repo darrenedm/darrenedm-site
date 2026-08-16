@@ -5,28 +5,30 @@ import { getEntries } from "@/lib/content/loader";
 
 export const metadata: Metadata = {
   title: "Writing",
-  description:
-    "Essays on strategy, decisions and the calls that were harder than they looked.",
+  description: "Thinking out loud about decisions, games, films and food.",
 };
 
 export default function WritingIndex() {
   const entries = getEntries("writing");
 
   return (
-    <Shell>
-      <header className="sec-head">
-        <p className="eyebrow">The spine</p>
-        <h1>Writing</h1>
-        <p>
-          The four boards show what I do. This is where the reasoning behind it
-          gets argued out loud — the decisions, the trade-offs, and the calls
-          that were harder than they looked from outside.
-        </p>
-      </header>
+    <Shell
+      hero={
+        <header className="sec-head">
+          <p className="label">Writing</p>
+          <h1>Thinking out loud</h1>
+          <p>
+            The sections show what I make. This is where I work out why — the
+            decisions, the trade-offs, and the calls that were harder than they
+            looked from outside.
+          </p>
+        </header>
+      }
+    >
       <EntryList
         entries={entries}
         basePath="/writing"
-        empty="First essay in progress."
+        empty="First piece in progress."
       />
     </Shell>
   );

@@ -132,8 +132,8 @@ export const WORLD_META: Record<
   dj: { name: "DJing", role: "Reading the room, live", kicker: "Latest set" },
   games: {
     name: "Games",
-    role: "Designing the board",
+    role: "Making things to play",
     kicker: "In progress",
   },
-  sports: { name: "Sport", role: "The shape, not the ball", kicker: "Latest" },
+  sports: { name: "Sport", role: "Watching the shape", kicker: "Latest" },
 };

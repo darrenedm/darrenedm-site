@@ -1,20 +1,29 @@
-/* DJing — reading the room, live.
-   Darker ground, chromatic accent, hard corners. The only world
-   where motion earns its keep. */
+/* DJing — bioluminescence. The things that glow in the dark.
+
+   The one world that inverts to a dark ground, on purpose: on an
+   otherwise light, airy site, walking into this section should feel
+   like the lights going down. It is the clearest proof the token
+   system can carry more than a change of accent colour. */
 
 [data-world="dj"] {
-  --world:      var(--w-dj);
-  --world-soft: rgba(240, 71, 155, 0.10);
-  --world-line: rgba(240, 71, 155, 0.30);
+  --world: var(--w-dj);
+  --world-soft: rgba(168, 85, 247, 0.13);
+  --world-line: rgba(168, 85, 247, 0.34);
 
-  --ink:    #08060C;
-  --ink-2:  #100A16;
-  --radius: 2px;
-  --ease:   cubic-bezier(0.16, 1, 0.3, 1);
+  --foam: #060310;
+  --surface: #0d0819;
+  --shell: #140d24;
+  --ink: #f2ecff;
+  --ink-soft: #c3b6db;
+  --muted: #8b7fa8;
+  --rule: #241a3a;
+  --rule-2: #362a52;
+
+  --radius: 4px;
 
   --texture: radial-gradient(
-    ellipse 80% 50% at 50% -10%,
-    rgba(240, 71, 155, 0.10),
-    transparent 70%
+    ellipse 90% 55% at 50% -15%,
+    rgba(168, 85, 247, 0.22),
+    transparent 72%
   );
 }

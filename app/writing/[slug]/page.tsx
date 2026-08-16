@@ -44,10 +44,10 @@ export default async function Essay({
   const { data } = entry;
 
   return (
-    <Shell>
-      <article>
+    <Shell
+      hero={
         <header className="article-head">
-          <p className="eyebrow">
+          <p className="label">
             Writing ·{" "}
             <time dateTime={data.date.toISOString()}>
               {formatDate(data.date)}
@@ -56,18 +56,18 @@ export default async function Essay({
           <h1>{data.title}</h1>
           <p className="article-standfirst">{data.summary}</p>
         </header>
+      }
+    >
+      <Mdx source={entry.body} />
 
-        <Mdx source={entry.body} />
-
-        {data.call && (
-          <TheCall
-            decision={data.call.decision}
-            alternative={data.call.alternative}
-            whyNot={data.call.whyNot}
-            cost={data.call.cost}
-          />
-        )}
-      </article>
+      {data.call && (
+        <TheCall
+          decision={data.call.decision}
+          alternative={data.call.alternative}
+          whyNot={data.call.whyNot}
+          cost={data.call.cost}
+        />
+      )}
     </Shell>
   );
 }

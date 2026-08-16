@@ -1,12 +1,13 @@
-/* Sport — the shape, not the ball.
-   Editorial: serif display, warm accent, softer corners. The most
-   traditional of the four, deliberately — it is a match report. */
+/* Sport — coral. Warm and structural.
+   The most editorial of the four: serif display, big crops, match
+   reports that look like match reports. Deliberately the most
+   traditional layout on the site. */
 
 [data-world="sports"] {
-  --world:      var(--w-sports);
-  --world-soft: rgba(255, 128, 56, 0.09);
-  --world-line: rgba(255, 128, 56, 0.28);
+  --world: var(--w-sports);
+  --world-soft: rgba(255, 107, 74, 0.08);
+  --world-line: rgba(255, 107, 74, 0.28);
 
   --display: var(--serif);
-  --radius:  10px;
+  --radius: 6px;
 }

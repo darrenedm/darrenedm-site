@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   // Swap NEXT_PUBLIC_SITE_URL and the whole site follows.
   metadataBase: new URL(site.url),
   title: {
-    default: `${site.name} — I want the strategist's chair`,
+    default: `${site.name} — data science, card games, records and football`,
     template: `%s · ${site.name}`,
   },
   description: site.description,

@@ -3,28 +3,32 @@ import { Shell } from "@/components/Shell";
 import { getLatest } from "@/lib/content/loader";
 import { WORLDS, WORLD_META } from "@/lib/content/schema";
 
+/**
+ * DRAFT COPY. Warm, first person, no posturing — the brief was "otter or
+ * dolphin", not "strategist's chair". Rewrite in Darren's own words.
+ */
+const hero = (
+  <section className="hero">
+    <p className="label">Darren Edmonds</p>
+    <h1>
+      Hi — I like figuring out how <span className="accent">things work</span>.
+    </h1>
+    <p className="hero-sub">
+      Data scientist by trade. I build card games, play records, cook too
+      ambitiously on weeknights, and think about football more than is
+      defensible.
+    </p>
+    <p className="hero-warmth">
+      Mostly I&rsquo;m just curious — about systems, about animals, about why
+      the good films are good. Best part is figuring it out with people I like.
+    </p>
+  </section>
+);
+
 export default function Home() {
   return (
-    <Shell className="home">
-      <section className="hero">
-        <p className="eyebrow">Hi — I&rsquo;m Darren</p>
-        <h1>
-          I want the <span className="accent">strategist&rsquo;s</span> chair.
-        </h1>
-        <p className="hero-sub">
-          Machine learning, DJ sets, games and football are four boards where
-          the same thing happens:{" "}
-          <strong>
-            read the system, model the people in it, make the call.
-          </strong>
-        </p>
-        <p className="hero-warmth">
-          I&rsquo;ve spent a long time getting good at understanding people
-          &mdash; and trying to be good company while doing it.
-        </p>
-      </section>
-
-      <section className="boards" aria-label="The four boards">
+    <Shell tone="dive" hero={hero} className="home">
+      <section className="boards" aria-label="What I'm into">
         {WORLDS.map((world) => {
           const meta = WORLD_META[world];
           const latest = getLatest(world);
@@ -54,10 +58,10 @@ export default function Home() {
       </section>
 
       <Link href="/writing" className="spine">
-        <h2>Writing &mdash; where the argument actually gets made</h2>
+        <h2>Writing — where I actually think out loud</h2>
         <p>
-          Unthemed on purpose. This is the spine holding the four boards
-          together, not a fifth board.
+          Longer pieces on decisions, games, films, and whatever I&rsquo;ve been
+          chewing on.
         </p>
       </Link>
     </Shell>

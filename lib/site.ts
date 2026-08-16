@@ -12,6 +12,6 @@ export const site = {
   shortName: "darrenedm",
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000",
   description:
-    "Machine learning, DJ sets, games and football — four boards for the same instinct: read the system, model the people in it, make the call.",
+    "Data scientist. I build card games, play records, cook too ambitiously, and think about football more than is defensible.",
   github: "https://github.com/darrenedm",
 } as const;

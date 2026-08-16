@@ -11,18 +11,20 @@ const UPDATED = "16 August 2026";
 
 export default function Now() {
   return (
-    <Shell>
-      <header className="sec-head">
-        <p className="eyebrow">Updated {UPDATED}</p>
-        <h1>Now</h1>
-        <p>What I&rsquo;m currently into. Short, dated, and honest.</p>
-      </header>
-
+    <Shell
+      hero={
+        <header className="sec-head">
+          <p className="label">Updated {UPDATED}</p>
+          <h1>Right now</h1>
+          <p>What I&rsquo;m into at the moment. Short, dated, honest.</p>
+        </header>
+      }
+    >
       <div className="prose">
         <p className="todo">
           [Four or five lines. What you&rsquo;re building, listening to,
-          playing, watching. Ten minutes a month keeps this the page returning
-          visitors check first.]
+          playing, cooking, watching. Ten minutes a month keeps this the page
+          people check first.]
         </p>
       </div>
     </Shell>

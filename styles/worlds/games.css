@@ -1,20 +1,11 @@
-/* Games — strategy with the noise removed.
-   Phosphor green, monospace display, square corners, faint scanlines.
-   An artifact of the medium, stopping short of costume. */
+/* Games — the reef. Bright, shallow, full of play.
+   Softer corners and more saturation than anywhere else: this is the
+   section about designing systems people play inside. */
 
 [data-world="games"] {
-  --world:      var(--w-games);
-  --world-soft: rgba(63, 217, 138, 0.09);
-  --world-line: rgba(63, 217, 138, 0.28);
+  --world: var(--w-games);
+  --world-soft: rgba(10, 196, 164, 0.09);
+  --world-line: rgba(10, 196, 164, 0.3);
 
-  --display: var(--mono);
-  --radius:  0px;
-
-  --texture: repeating-linear-gradient(
-    180deg,
-    rgba(63, 217, 138, 0.028) 0px,
-    rgba(63, 217, 138, 0.028) 1px,
-    transparent 1px,
-    transparent 3px
-  );
+  --radius: 20px;
 }

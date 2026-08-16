@@ -1,49 +1,63 @@
 /* ══════════════════════════════════════════════════════════════
    THE MASTER BUS
-   Every component reads these. No component hardcodes a colour,
-   a typeface, or a motion curve — that rule is what makes the
-   per-world theming work with zero component changes.
 
-   The skeleton is deliberately MONOCHROME. All colour belongs to
-   the worlds (see styles/worlds/*.css). That is the design thesis
-   and the architecture thesis, and they are the same thesis.
+   Every component reads these. No component hardcodes a colour, a
+   typeface, or a motion curve — that rule is what makes the per-world
+   theming work with zero component changes.
+
+   The palette is ocean, taken literally: foam and daylight at the
+   surface, deep water below, and the four worlds as things that live
+   at different depths. Light-dominant and airy — the deep only shows
+   up where it earns the drama.
    ══════════════════════════════════════════════════════════════ */
 
 :root {
-  color-scheme: dark;
+  color-scheme: light;
 
-  /* ── ground: the war room ── */
-  --ink:      #0B0E15;
-  --ink-2:    #11151E;
-  --surface:  #151A25;
-  --bone:     #E9E5DC;
-  --bone-dim: #A8A79F;
-  --muted:    #71757F;
-  --rule:     #212734;
-  --rule-2:   #2C3444;
+  /* ── surface: foam, daylight, wet sand ── */
+  --foam: #f6fafa;
+  --surface: #ffffff;
+  --shell: #e9f1f2;
+  --ink: #04141e;
+  --ink-soft: #37545f;
+  --muted: #78929b;
+  --rule: #dbe8ea;
+  --rule-2: #c2d6da;
 
-  /* ── the world palette, declared once ──
-     Named here so the home page can reference a world's hue without
-     being inside that world (see the :has() rules in globals.css). */
-  --w-data:   #5b9bf5;
-  --w-dj:     #f0479b;
-  --w-games:  #3fd98a;
-  --w-sports: #ff8038;
+  /* ── the deep: for immersive moments only ── */
+  --abyss: #03101a;
+  --deep: #062a3d;
+  --mid: #0a5573;
+  --shallow: #12879e;
+  --lume: #46e3d1;
 
-  /* ── identity: the ONE token each world overrides ──
-     Unset, it resolves to bone — the skeleton has no colour of its own. */
-  --world:      var(--bone);
-  --world-soft: rgba(233, 229, 220, 0.08);
-  --world-line: rgba(233, 229, 220, 0.22);
+  /* ── the four worlds, as ocean depths ──
+     Declared once so the home page can reference a world's hue
+     without being inside that world (see :has() in globals.css). */
+  --w-data: #1a7ea8; /* deep water — where the modelling happens */
+  --w-dj: #a855f7; /* bioluminescence — the things that glow */
+  --w-games: #0ac4a4; /* reef — bright, shallow, full of play */
+  --w-sports: #ff6b4a; /* coral — warm, structural */
 
-  /* ── voice ── */
-  --display: ui-sans-serif, -apple-system, "SF Pro Display", "Segoe UI Variable Display", "Helvetica Neue", Arial, sans-serif;
-  --serif:   ui-serif, Charter, "Bitstream Charter", "Iowan Old Style", "Palatino Linotype", Georgia, serif;
-  --mono:    ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, monospace;
+  /* ── identity: the ONE token each world overrides ── */
+  --world: var(--mid);
+  --world-soft: rgba(10, 85, 115, 0.07);
+  --world-line: rgba(10, 85, 115, 0.22);
+
+  /* ── voice ──
+     Sans-led and tightly tracked. The serif is kept for long-form
+     prose only, where reading distance actually beats presence. */
+  --display: -apple-system, "SF Pro Display", "Helvetica Neue", Helvetica,
+    Arial, sans-serif;
+  --body: -apple-system, "SF Pro Text", "Helvetica Neue", Helvetica, Arial,
+    sans-serif;
+  --serif: ui-serif, Charter, "Bitstream Charter", "Iowan Old Style",
+    "Palatino Linotype", Georgia, serif;
+  --mono: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, monospace;
 
   /* ── feel: worlds may override these too, not just colour ── */
-  --radius:  8px;
-  --ease:    cubic-bezier(0.2, 0.7, 0.2, 1);
+  --radius: 14px;
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
   --texture: none;
 
   /* ── rhythm ── */
@@ -52,9 +66,9 @@
   --s3: 1.1rem;
   --s4: 1.7rem;
   --s5: 2.6rem;
-  --s6: 4rem;
-  --s7: 6.5rem;
+  --s6: 4.2rem;
+  --s7: 7rem;
 
-  --measure: 64ch;
-  --page:    72rem;
+  --measure: 62ch;
+  --page: 78rem;
 }
