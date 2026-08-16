@@ -1,0 +1,11 @@
+/* Machine learning — modelling the system.
+   Clean grid, cool blue, nothing decorative. It should feel like a
+   well-kept notebook: the section a recruiter opens first. */
+
+[data-world="ml"] {
+  --world:      var(--w-ml);
+  --world-soft: rgba(91, 155, 245, 0.09);
+  --world-line: rgba(91, 155, 245, 0.28);
+
+  --radius: 6px;
+}

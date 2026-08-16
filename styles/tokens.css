@@ -1,0 +1,60 @@
+/* ══════════════════════════════════════════════════════════════
+   THE MASTER BUS
+   Every component reads these. No component hardcodes a colour,
+   a typeface, or a motion curve — that rule is what makes the
+   per-world theming work with zero component changes.
+
+   The skeleton is deliberately MONOCHROME. All colour belongs to
+   the worlds (see styles/worlds/*.css). That is the design thesis
+   and the architecture thesis, and they are the same thesis.
+   ══════════════════════════════════════════════════════════════ */
+
+:root {
+  color-scheme: dark;
+
+  /* ── ground: the war room ── */
+  --ink:      #0B0E15;
+  --ink-2:    #11151E;
+  --surface:  #151A25;
+  --bone:     #E9E5DC;
+  --bone-dim: #A8A79F;
+  --muted:    #71757F;
+  --rule:     #212734;
+  --rule-2:   #2C3444;
+
+  /* ── the world palette, declared once ──
+     Named here so the home page can reference a world's hue without
+     being inside that world (see the :has() rules in globals.css). */
+  --w-ml:     #5b9bf5;
+  --w-dj:     #f0479b;
+  --w-games:  #3fd98a;
+  --w-sports: #ff8038;
+
+  /* ── identity: the ONE token each world overrides ──
+     Unset, it resolves to bone — the skeleton has no colour of its own. */
+  --world:      var(--bone);
+  --world-soft: rgba(233, 229, 220, 0.08);
+  --world-line: rgba(233, 229, 220, 0.22);
+
+  /* ── voice ── */
+  --display: ui-sans-serif, -apple-system, "SF Pro Display", "Segoe UI Variable Display", "Helvetica Neue", Arial, sans-serif;
+  --serif:   ui-serif, Charter, "Bitstream Charter", "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+  --mono:    ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, monospace;
+
+  /* ── feel: worlds may override these too, not just colour ── */
+  --radius:  8px;
+  --ease:    cubic-bezier(0.2, 0.7, 0.2, 1);
+  --texture: none;
+
+  /* ── rhythm ── */
+  --s1: 0.35rem;
+  --s2: 0.7rem;
+  --s3: 1.1rem;
+  --s4: 1.7rem;
+  --s5: 2.6rem;
+  --s6: 4rem;
+  --s7: 6.5rem;
+
+  --measure: 64ch;
+  --page:    72rem;
+}

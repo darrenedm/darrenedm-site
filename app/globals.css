@@ -1,0 +1,660 @@
+@import "../styles/tokens.css";
+@import "../styles/worlds/ml.css";
+@import "../styles/worlds/dj.css";
+@import "../styles/worlds/games.css";
+@import "../styles/worlds/sports.css";
+
+/* ══════════  RESET  ══════════ */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--ink);
+  color: var(--bone);
+  font-family: var(--serif);
+  font-size: 17px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+}
+
+img,
+svg,
+video {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+a {
+  color: var(--world);
+  text-underline-offset: 3px;
+}
+
+:focus-visible {
+  outline: 2px solid var(--world);
+  outline-offset: 3px;
+  border-radius: 3px;
+}
+
+/* ══════════  WORLD SHELL  ══════════
+   The single element that carries the theme. Everything inside it
+   reads --world and friends; nothing inside it names a colour. */
+.world {
+  flex: 1;
+  background: var(--ink);
+  background-image: var(--texture);
+  display: flex;
+  flex-direction: column;
+}
+
+.page {
+  width: 100%;
+  max-width: var(--page);
+  margin: 0 auto;
+  padding: var(--s4) var(--s3) var(--s7);
+  display: flex;
+  flex-direction: column;
+  gap: var(--s6);
+  flex: 1;
+}
+
+/* ══════════  TYPE  ══════════ */
+h1,
+h2,
+h3 {
+  font-family: var(--display);
+  letter-spacing: -0.03em;
+  text-wrap: balance;
+  margin: 0;
+  color: var(--bone);
+}
+
+p {
+  margin: 0;
+}
+
+.eyebrow {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 0;
+}
+
+.eyebrow-world {
+  color: var(--world);
+}
+
+/* ══════════  NAV / FOOTER  ══════════ */
+.nav {
+  width: 100%;
+  max-width: var(--page);
+  margin: 0 auto;
+  padding: var(--s3);
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--s3);
+  flex-wrap: wrap;
+}
+
+.wordmark {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--bone);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.navlinks {
+  display: flex;
+  gap: var(--s3);
+  flex-wrap: wrap;
+}
+
+.navlinks a {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  color: var(--muted);
+  text-decoration: none;
+  transition: color 0.18s var(--ease);
+}
+
+.navlinks a:hover,
+.navlinks a[data-active="true"] {
+  color: var(--bone);
+}
+
+.navlinks a[data-active="true"] {
+  color: var(--world);
+}
+
+.footer {
+  border-top: 1px solid var(--rule);
+  padding: var(--s4) var(--s3);
+}
+
+.footer-inner {
+  max-width: var(--page);
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  gap: var(--s3);
+  flex-wrap: wrap;
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  color: var(--muted);
+}
+
+.footer-inner a {
+  color: var(--muted);
+  text-decoration: none;
+}
+
+.footer-inner a:hover {
+  color: var(--bone);
+}
+
+/* ══════════  HERO  ══════════ */
+.hero {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s3);
+  padding-top: var(--s5);
+}
+
+.hero h1 {
+  font-size: clamp(2.7rem, 8.5vw, 5.4rem);
+  line-height: 0.95;
+  letter-spacing: -0.045em;
+  font-weight: 700;
+  max-width: 15ch;
+}
+
+.hero h1 .accent {
+  color: var(--world);
+  transition: color 0.4s var(--ease);
+}
+
+.hero-sub {
+  font-size: clamp(1.02rem, 2vw, 1.2rem);
+  line-height: 1.55;
+  color: var(--bone-dim);
+  max-width: 54ch;
+}
+
+.hero-sub strong {
+  color: var(--bone);
+  font-weight: 600;
+}
+
+.hero-warmth {
+  font-size: 0.98rem;
+  color: var(--muted);
+  max-width: 54ch;
+  font-style: italic;
+}
+
+/* ══════════  THE FOUR BOARDS  ══════════ */
+.boards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--s2);
+}
+
+@media (max-width: 52rem) {
+  .boards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 26rem) {
+  .boards {
+    grid-template-columns: 1fr;
+  }
+}
+
+.board {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s1);
+  padding: var(--s3) var(--s3) var(--s4);
+  background: var(--ink-2);
+  border: 1px solid var(--rule);
+  border-top: 2px solid var(--world);
+  border-radius: var(--radius);
+  text-decoration: none;
+  min-height: 11.5rem;
+  transition:
+    background 0.2s var(--ease),
+    border-color 0.2s var(--ease),
+    transform 0.2s var(--ease);
+}
+
+.board:hover {
+  background: var(--surface);
+  border-color: var(--rule-2);
+  transform: translateY(-2px);
+}
+
+.board-role {
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--world);
+}
+
+.board-name {
+  font-family: var(--display);
+  font-size: 1.28rem;
+  font-weight: 650;
+  letter-spacing: -0.02em;
+  color: var(--bone);
+  line-height: 1.1;
+}
+
+.board-latest {
+  margin-top: auto;
+  padding-top: var(--s2);
+  border-top: 1px solid var(--rule);
+  display: flex;
+  flex-direction: column;
+  gap: 0.18rem;
+}
+
+.board-kicker {
+  font-family: var(--mono);
+  font-size: 0.58rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.board-title {
+  font-size: 0.84rem;
+  line-height: 1.35;
+  color: var(--bone-dim);
+}
+
+/* Hovering a board previews its world in the hero — no JavaScript.
+   :has() lets a parent respond to a descendant's state, which is
+   exactly the ancestor-selector CSS lacked for twenty years. */
+.home:has(.board[data-board="ml"]:hover) .accent {
+  color: var(--w-ml);
+}
+.home:has(.board[data-board="dj"]:hover) .accent {
+  color: var(--w-dj);
+}
+.home:has(.board[data-board="games"]:hover) .accent {
+  color: var(--w-games);
+}
+.home:has(.board[data-board="sports"]:hover) .accent {
+  color: var(--w-sports);
+}
+
+/* Each board carries its own hue without needing a world wrapper. */
+.board[data-board="ml"] {
+  --world: var(--w-ml);
+}
+.board[data-board="dj"] {
+  --world: var(--w-dj);
+}
+.board[data-board="games"] {
+  --world: var(--w-games);
+}
+.board[data-board="sports"] {
+  --world: var(--w-sports);
+}
+
+/* ══════════  WRITING SPINE  ══════════ */
+.spine {
+  padding-top: var(--s4);
+  border-top: 1px solid var(--rule);
+  display: flex;
+  flex-direction: column;
+  gap: var(--s2);
+  text-decoration: none;
+}
+
+.spine h2 {
+  font-size: 1.25rem;
+  font-weight: 620;
+}
+
+.spine p {
+  font-size: 0.93rem;
+  color: var(--muted);
+  max-width: 62ch;
+}
+
+/* ══════════  SECTION HEADERS & LISTS  ══════════ */
+.sec-head {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s2);
+  padding-top: var(--s4);
+}
+
+.sec-head h1 {
+  font-size: clamp(2rem, 5vw, 3rem);
+  line-height: 1.03;
+  font-weight: 690;
+}
+
+.sec-head p {
+  color: var(--bone-dim);
+  max-width: var(--measure);
+}
+
+.entry-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  border-top: 1px solid var(--rule);
+}
+
+.entry {
+  display: grid;
+  grid-template-columns: 7rem 1fr;
+  gap: var(--s3);
+  padding: var(--s3) 0;
+  border-bottom: 1px solid var(--rule);
+  text-decoration: none;
+  transition: background 0.18s var(--ease);
+}
+
+@media (max-width: 38rem) {
+  .entry {
+    grid-template-columns: 1fr;
+    gap: var(--s1);
+  }
+}
+
+.entry:hover {
+  background: var(--world-soft);
+}
+
+.entry-date {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+  padding-top: 0.3rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.entry-body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s1);
+}
+
+.entry-title {
+  font-family: var(--display);
+  font-size: 1.15rem;
+  font-weight: 620;
+  letter-spacing: -0.02em;
+  color: var(--bone);
+  line-height: 1.25;
+}
+
+.entry-summary {
+  font-size: 0.93rem;
+  color: var(--bone-dim);
+  max-width: var(--measure);
+}
+
+.draft-flag {
+  font-family: var(--mono);
+  font-size: 0.58rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink);
+  background: var(--world);
+  border-radius: 3px;
+  padding: 0.1em 0.4em;
+  align-self: flex-start;
+}
+
+.empty {
+  padding: var(--s5) 0;
+  color: var(--muted);
+  font-style: italic;
+  border-bottom: 1px solid var(--rule);
+}
+
+/* ══════════  ARTICLE  ══════════ */
+.article-head {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s3);
+  padding-top: var(--s4);
+}
+
+.article-head h1 {
+  font-size: clamp(1.9rem, 4.6vw, 3rem);
+  line-height: 1.05;
+  font-weight: 690;
+  max-width: 22ch;
+}
+
+.article-standfirst {
+  font-size: 1.06rem;
+  line-height: 1.6;
+  color: var(--bone-dim);
+  max-width: 58ch;
+}
+
+.metrics {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(8rem, 1fr));
+  gap: 1px;
+  background: var(--rule);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.metric {
+  background: var(--ink-2);
+  padding: var(--s3);
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.metric dt {
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.metric dd {
+  margin: 0;
+  font-family: var(--display);
+  font-size: 1.3rem;
+  font-weight: 650;
+  letter-spacing: -0.02em;
+  color: var(--bone);
+  font-variant-numeric: tabular-nums;
+}
+
+.prose {
+  max-width: var(--measure);
+  display: flex;
+  flex-direction: column;
+  gap: var(--s3);
+}
+
+.prose p {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--bone-dim);
+}
+
+.prose h2 {
+  font-size: 1.3rem;
+  font-weight: 650;
+  margin-top: var(--s3);
+}
+
+.prose h3 {
+  font-size: 1.05rem;
+  font-weight: 650;
+  margin-top: var(--s2);
+}
+
+.prose strong {
+  color: var(--bone);
+  font-weight: 600;
+}
+
+.prose ul,
+.prose ol {
+  margin: 0;
+  padding-left: 1.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: var(--s1);
+  color: var(--bone-dim);
+}
+
+.prose code {
+  font-family: var(--mono);
+  font-size: 0.85em;
+  color: var(--world);
+  background: var(--world-soft);
+  border: 1px solid var(--world-line);
+  padding: 0.08em 0.35em;
+  border-radius: 4px;
+}
+
+.prose pre {
+  background: var(--ink-2);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  padding: var(--s3);
+  overflow-x: auto;
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  line-height: 1.7;
+}
+
+.prose pre code {
+  background: none;
+  border: 0;
+  padding: 0;
+  color: var(--bone-dim);
+}
+
+.prose blockquote {
+  margin: 0;
+  padding-left: var(--s3);
+  border-left: 2px solid var(--world-line);
+  color: var(--muted);
+  font-style: italic;
+}
+
+.prose a {
+  color: var(--world);
+}
+
+/* wide content must scroll itself, never the page */
+.prose table {
+  display: block;
+  overflow-x: auto;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.prose th,
+.prose td {
+  border: 1px solid var(--rule);
+  padding: var(--s1) var(--s2);
+  text-align: left;
+}
+
+/* ══════════  "THE CALL"  ══════════
+   The signature block: the strategist thesis expressed structurally. */
+.call {
+  border: 1px solid var(--rule-2);
+  border-left: 3px solid var(--world);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  background: var(--ink-2);
+  padding: var(--s3) var(--s4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--s2);
+  max-width: var(--measure);
+}
+
+.call-label {
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--world);
+}
+
+.call dl {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--s2);
+}
+
+.call dt {
+  font-family: var(--mono);
+  font-size: 0.64rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 0.15rem;
+}
+
+.call dd {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.55;
+  color: var(--bone-dim);
+}
+
+.call dd strong {
+  color: var(--bone);
+  font-weight: 600;
+}
+
+/* ══════════  TODO MARKER  ══════════
+   Deliberately visible. Placeholders should look like placeholders. */
+.todo {
+  color: var(--world);
+  border-bottom: 1px dashed var(--world-line);
+  font-style: italic;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition: none !important;
+    animation: none !important;
+    scroll-behavior: auto !important;
+  }
+}

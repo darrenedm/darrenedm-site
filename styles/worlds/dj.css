@@ -1,0 +1,20 @@
+/* DJing — reading the room, live.
+   Darker ground, chromatic accent, hard corners. The only world
+   where motion earns its keep. */
+
+[data-world="dj"] {
+  --world:      var(--w-dj);
+  --world-soft: rgba(240, 71, 155, 0.10);
+  --world-line: rgba(240, 71, 155, 0.30);
+
+  --ink:    #08060C;
+  --ink-2:  #100A16;
+  --radius: 2px;
+  --ease:   cubic-bezier(0.16, 1, 0.3, 1);
+
+  --texture: radial-gradient(
+    ellipse 80% 50% at 50% -10%,
+    rgba(240, 71, 155, 0.10),
+    transparent 70%
+  );
+}

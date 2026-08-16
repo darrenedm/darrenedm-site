@@ -1,0 +1,20 @@
+/* Games — strategy with the noise removed.
+   Phosphor green, monospace display, square corners, faint scanlines.
+   An artifact of the medium, stopping short of costume. */
+
+[data-world="games"] {
+  --world:      var(--w-games);
+  --world-soft: rgba(63, 217, 138, 0.09);
+  --world-line: rgba(63, 217, 138, 0.28);
+
+  --display: var(--mono);
+  --radius:  0px;
+
+  --texture: repeating-linear-gradient(
+    180deg,
+    rgba(63, 217, 138, 0.028) 0px,
+    rgba(63, 217, 138, 0.028) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+}
