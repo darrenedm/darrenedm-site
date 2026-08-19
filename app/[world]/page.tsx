@@ -47,7 +47,7 @@ export default async function WorldIndex({
       <EntryList
         entries={entries}
         basePath={`/${world}`}
-        empty="Nothing here yet — this one's still coming."
+        empty={meta.empty}
       />
     </Shell>
   );

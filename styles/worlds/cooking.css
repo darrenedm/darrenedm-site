@@ -1,0 +1,11 @@
+/* Cooking — the tide line. Where the food comes from, and where the
+   recipe app gets designed. Warm ochre against all that blue: the one
+   section that is about appetite rather than analysis. */
+
+[data-world="cooking"] {
+  --world: #7d5310;
+  --world-soft: rgba(125, 83, 16, 0.08);
+  --world-line: rgba(125, 83, 16, 0.26);
+
+  --radius: 16px;
+}

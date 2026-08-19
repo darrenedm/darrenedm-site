@@ -4,7 +4,7 @@ import { z } from "zod";
  * The four themed worlds. Each has a route, a theme file in
  * styles/worlds/, and a schema extension below.
  */
-export const WORLDS = ["data", "dj", "games", "sports"] as const;
+export const WORLDS = ["cooking", "games", "sports", "data", "dj"] as const;
 export type World = (typeof WORLDS)[number];
 
 /**
@@ -82,6 +82,31 @@ export const schemas = {
     tracklist: z.array(z.string()).default([]),
   }),
 
+  cooking: base.extend({
+    /**
+     * Covers two things that belong together: the food itself, and the
+     * recipe app being designed around it. `kind` decides which fields
+     * the page renders.
+     */
+    kind: z.enum(["recipe", "system", "note"]).default("note"),
+    /** recipes */
+    serves: z.string().optional(),
+    time: z.string().optional(),
+    macros: z
+      .object({
+        calories: z.number().optional(),
+        protein: z.number().optional(),
+        carbs: z.number().optional(),
+        fat: z.number().optional(),
+      })
+      .optional(),
+    /** system design write-ups */
+    stack: z.array(z.string()).default([]),
+    repo: z.string().optional(),
+    metrics: z.array(metric).default([]),
+    call: call.optional(),
+  }),
+
   games: base.extend({
     /**
      * Design-led. "playing" entries are still welcome, but the section
@@ -122,18 +147,36 @@ export type Frontmatter<C extends Collection> = z.infer<(typeof schemas)[C]>;
 /** Display metadata for each world. Single source of truth for nav and cards. */
 export const WORLD_META: Record<
   World,
-  { name: string; role: string; kicker: string }
+  { name: string; role: string; kicker: string; empty: string }
 > = {
+  cooking: {
+    name: "Cooking",
+    role: "Feeding people well",
+    kicker: "In progress",
+    empty: "The recipe app system design is being written. Recipes to follow.",
+  },
   data: {
     name: "Data science",
     role: "Modelling the system",
     kicker: "Latest",
+    empty: "Nothing here yet.",
   },
-  dj: { name: "DJing", role: "Reading the room, live", kicker: "Latest set" },
+  dj: {
+    name: "DJing",
+    role: "Reading the room, live",
+    kicker: "Latest set",
+    empty: "No sets up yet.",
+  },
   games: {
     name: "Games",
     role: "Making things to play",
     kicker: "In progress",
+    empty: "The card game is still in the box. Notes coming.",
   },
-  sports: { name: "Sport", role: "Watching the shape", kicker: "Latest" },
+  sports: {
+    name: "Sport",
+    role: "Watching the shape",
+    kicker: "Latest",
+    empty: "Nothing written up yet.",
+  },
 };

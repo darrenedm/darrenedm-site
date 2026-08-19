@@ -1,4 +1,5 @@
 @import "../styles/tokens.css";
+@import "../styles/worlds/cooking.css";
 @import "../styles/worlds/data.css";
 @import "../styles/worlds/dj.css";
 @import "../styles/worlds/games.css";
@@ -176,9 +177,20 @@ p {
   color: var(--ink);
 }
 
+/* the shore — before you are even in the water */
+.zone[data-zone="tide"] {
+  --from: #eef6f7;
+  --to: #e3f2f4;
+  --ink: #04141e;
+  --ink-soft: #33585f;
+  --muted: #42646c;
+  --rule: rgba(4, 20, 30, 0.13);
+  --world: #7d5310;
+}
+
 /* sunlight zone — foam and daylight */
 .zone[data-zone="reef"] {
-  --from: #eef6f7;
+  --from: #e3f2f4;
   --to: #d4ebef;
   --ink: #04141e;
   --ink-soft: #2f5560;
@@ -880,6 +892,208 @@ p {
 .todo {
   color: var(--world);
   border-bottom: 1px dashed var(--world-line);
+}
+
+
+/* ══════════  INHABITANTS  ══════════
+   One creature per layer, drifting behind the content. Silhouettes in
+   currentColor at low opacity — atmosphere, not illustration. */
+
+.zone > .inner {
+  position: relative;
+  z-index: 1;
+}
+
+.creature {
+  position: absolute;
+  width: clamp(130px, 19vw, 280px);
+  height: auto;
+  opacity: 0.075;
+  pointer-events: none;
+  z-index: 0;
+  color: var(--ink);
+}
+
+.zone[data-zone="deep"] .creature,
+.zone[data-zone="midnight"] .creature,
+.zone[data-zone="abyss"] .creature {
+  opacity: 0.14;
+  color: var(--world);
+}
+
+.creature[data-creature="otter"] {
+  right: 4%;
+  top: 12%;
+  animation: bob 19s ease-in-out infinite alternate;
+}
+
+.creature[data-creature="turtle"] {
+  right: 7%;
+  bottom: 8%;
+  animation: glide 31s ease-in-out infinite alternate;
+}
+
+.creature[data-creature="dolphin"] {
+  right: 3%;
+  top: 18%;
+  animation: glide 24s ease-in-out infinite alternate;
+}
+
+.creature[data-creature="squid"] {
+  right: 9%;
+  top: 8%;
+  animation: pulse-drift 22s ease-in-out infinite alternate;
+}
+
+.creature[data-creature="anglerfish"] {
+  right: 5%;
+  bottom: 12%;
+  animation: lurk 27s ease-in-out infinite alternate;
+}
+
+.creature[data-creature="dumbo"] {
+  right: 8%;
+  top: 20%;
+  animation: bob 25s ease-in-out infinite alternate;
+}
+
+@keyframes bob {
+  from {
+    transform: translate3d(0, -6%, 0) rotate(-2deg);
+  }
+  to {
+    transform: translate3d(-5%, 6%, 0) rotate(2deg);
+  }
+}
+
+@keyframes glide {
+  from {
+    transform: translate3d(6%, 0, 0);
+  }
+  to {
+    transform: translate3d(-9%, -8%, 0);
+  }
+}
+
+@keyframes pulse-drift {
+  from {
+    transform: translate3d(0, 4%, 0) scale(1);
+  }
+  to {
+    transform: translate3d(-6%, -6%, 0) scale(1.07);
+  }
+}
+
+@keyframes lurk {
+  from {
+    transform: translate3d(-4%, 0, 0);
+  }
+  to {
+    transform: translate3d(5%, -5%, 0);
+  }
+}
+
+/* ── marine snow: only falls where the light has gone ── */
+.zone[data-zone="deep"] .snow,
+.zone[data-zone="midnight"] .snow,
+.zone[data-zone="abyss"] .snow {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-image:
+    radial-gradient(circle, rgba(232, 244, 246, 0.5) 1px, transparent 1.4px),
+    radial-gradient(circle, rgba(232, 244, 246, 0.32) 1px, transparent 1.6px);
+  background-size:
+    110px 150px,
+    170px 230px;
+  opacity: 0.5;
+  animation: fall 34s linear infinite;
+}
+
+@keyframes fall {
+  from {
+    background-position:
+      0 0,
+      40px 0;
+  }
+  to {
+    background-position:
+      -30px 150px,
+      20px 230px;
+  }
+}
+
+/* ══════════  DEPTH GAUGE  ══════════
+   Fixed alongside the descent. `mix-blend-mode: difference` against
+   white means it inverts against whatever is behind it — legible on
+   foam at the surface and in the abyss, without knowing which is which. */
+
+.gauge {
+  position: fixed;
+  right: clamp(0.75rem, 2.2vw, 2rem);
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 30;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.7rem;
+  color: #fff;
+  mix-blend-mode: difference;
+  pointer-events: none;
+  font-family: var(--mono);
+}
+
+@media (max-width: 62rem) {
+  .gauge {
+    display: none;
+  }
+}
+
+.gauge-readout {
+  display: flex;
+  align-items: baseline;
+  gap: 0.15rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.gauge-readout b {
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.gauge-readout span {
+  font-size: 0.58rem;
+  opacity: 0.7;
+}
+
+.gauge-track {
+  position: relative;
+  width: 1px;
+  height: clamp(6rem, 16vh, 11rem);
+  background: currentColor;
+  opacity: 0.45;
+}
+
+.gauge-thumb {
+  position: absolute;
+  left: 50%;
+  top: calc(var(--p) * 100%);
+  width: 7px;
+  height: 7px;
+  margin: -3.5px 0 0 -3.5px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.gauge-layer {
+  font-size: 0.55rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  writing-mode: vertical-rl;
+  opacity: 0.75;
 }
 
 @media (prefers-reduced-motion: reduce) {

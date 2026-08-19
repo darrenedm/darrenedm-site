@@ -1,0 +1,61 @@
+---
+title: Designing the recipe app I keep wishing existed
+summary: >-
+  System design for a cooking app built around how people actually cook:
+  what you have, what you can make, and what it does to your week.
+date: 2026-08-19
+status: draft
+kind: system
+tags: [system-design, cooking, wip]
+stack: []
+metrics:
+  - label: Stage
+    value: system design
+  - label: Users
+    value: none yet
+    todo: true
+call:
+  decision: The call you end up making.
+  alternative: The obvious approach you rejected.
+  whyNot: Why it does not survive contact with the real problem.
+  cost: What choosing this way costs you. Do not skip this field.
+---
+
+This is a **draft** — it renders locally and is filtered out of the production
+build until `status` flips to `published`.
+
+## The problem
+
+Most recipe apps are search engines with photos attached. They answer "how do I
+make this", which is the easy question. The hard ones are **what can I make with
+what is already in the kitchen**, and **what does cooking this do to the rest of
+my week** — the macros, the shopping, the leftovers.
+
+<span className="todo">
+[Your framing. What specifically annoys you about the apps that exist.]
+</span>
+
+## Requirements
+
+<span className="todo">
+[Functional and non-functional. Be honest about scale — an app for you and ten
+friends is a different system to one for a million users, and pretending
+otherwise is the most common system-design mistake.]
+</span>
+
+## Entities
+
+<span className="todo">
+[Ingredient, Recipe, Pantry, Plan, User. The interesting modelling problem is
+almost certainly ingredient normalisation — "1 large onion", "100g onion" and
+"onion, diced" are the same entity, and everything downstream depends on
+resolving that. Sound familiar? It is the same taxonomy-linking problem as the
+ModernBERT work.]
+</span>
+
+## The shape of it
+
+<span className="todo">
+[Storage, API surface, what is computed on write vs on read, where the
+bottlenecks are.]
+</span>

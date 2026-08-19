@@ -1,31 +1,41 @@
 import Link from "next/link";
 import { Shell } from "@/components/Shell";
+import { Creature, type CreatureName } from "@/components/Creature";
+import { DepthGauge } from "@/components/DepthGauge";
 import { getLatest } from "@/lib/content/loader";
 import { WORLD_META, type World } from "@/lib/content/schema";
 
 /**
- * The descent. Ordered by real ocean depth rather than by importance:
- * reef and coral live in the sunlight, deep water sits in the twilight,
- * and the club is down in the midnight zone where the only light is the
- * light things make themselves.
- *
- * It also happens to run from the most playful to the most private,
- * which is the order that reads best on the way down.
+ * The descent. Ordered by real ocean depth, which also happens to run
+ * from the most playful to the most private — the order that reads best
+ * on the way down. Each layer gets the creature that actually lives
+ * there, drifting behind the content.
  */
 const DESCENT = [
   {
+    world: "cooking",
+    zone: "tide",
+    depth: "0 m",
+    layer: "Tide line",
+    creature: "otter",
+    blurb:
+      "Cooking for people, increasingly with one eye on the macros — and currently designing the recipe app I keep wishing already existed.",
+  },
+  {
     world: "games",
     zone: "reef",
-    depth: "0–40 m",
+    depth: "0–50 m",
     layer: "Sunlight",
+    creature: "turtle",
     blurb:
       "Designing a card game, which turns out to be the most honest version of the hobby — you build a system, hand it to people, and find out exactly where it breaks.",
   },
   {
     world: "sports",
     zone: "coral",
-    depth: "40–200 m",
+    depth: "50–200 m",
     layer: "Sunlight",
+    creature: "dolphin",
     blurb:
       "Football on the pitch, NFL and March Madness from the sofa. Mostly in it for the shape of the thing rather than the result.",
   },
@@ -34,6 +44,7 @@ const DESCENT = [
     zone: "deep",
     depth: "200–1000 m",
     layer: "Twilight",
+    creature: "squid",
     blurb:
       "The day job. Finding the pattern in a mess, then arguing about what it actually means.",
   },
@@ -42,14 +53,16 @@ const DESCENT = [
     zone: "midnight",
     depth: "1000–4000 m",
     layer: "Midnight",
+    creature: "anglerfish",
     blurb:
       "Reading a room in real time. The same problem as everything above it, with more variables and worse lighting.",
   },
 ] as const;
 
-/**
- * DRAFT COPY. Warm, first person, no posturing. Rewrite in Darren's words.
- */
+/** index in DESCENT where the light gives out */
+const CROSSOVER = 3;
+
+/** DRAFT COPY — warm, first person. Rewrite in Darren's words. */
 const hero = (
   <section className="hero">
     <p className="label">Darren Edmonds</p>
@@ -72,14 +85,16 @@ const hero = (
 export default function Home() {
   return (
     <Shell tone="descent" hero={hero} bleed>
+      <DepthGauge />
+
       {DESCENT.map((step, i) => {
         const meta = WORLD_META[step.world as World];
         const latest = getLatest(step.world as World);
+        const dark = i >= CROSSOVER;
 
         return (
           <div key={step.world}>
-            {/* the boundary layer: where the light gives out */}
-            {i === 2 && (
+            {i === CROSSOVER && (
               <section className="zone" data-zone="thermocline" aria-hidden>
                 <div className="inner">
                   <p className="thermocline-mark">Thermocline</p>
@@ -88,6 +103,9 @@ export default function Home() {
             )}
 
             <section className="zone" data-zone={step.zone}>
+              {dark && <span className="snow" aria-hidden />}
+              <Creature name={step.creature as CreatureName} />
+
               <div className="inner zone-grid">
                 <p className="depth-mark">
                   <span>{step.depth}</span>
@@ -117,6 +135,8 @@ export default function Home() {
 
       {/* the floor */}
       <section className="zone" data-zone="abyss">
+        <span className="snow" aria-hidden />
+        <Creature name="dumbo" />
         <div className="inner zone-grid">
           <p className="depth-mark">
             <span>4000 m+</span>
