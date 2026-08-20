@@ -1,0 +1,24 @@
+/* Teaching — the scattering layer. The band of small lights at 700 m that
+   sonar mistakes for the sea floor, because there are so many of them.
+
+   The one world set in mono: this section is about drills, tools and the
+   grind of getting good at something, and it should look like the thing
+   it is rather than like an essay about it. Squared-off corners for the
+   same reason — a cell, not a card. */
+
+[data-world="teaching"] {
+  --world: var(--w-teaching);
+  --world-soft: rgba(69, 119, 25, 0.08);
+  --world-line: rgba(69, 119, 25, 0.3);
+
+  --display: var(--mono);
+  --radius: 2px;
+}
+
+/* Mono runs wide and reads loud, so headings need the tracking pulled
+   back in. Without this the display face fights the layout. */
+[data-world="teaching"] h1,
+[data-world="teaching"] .zone-name,
+[data-world="teaching"] .sec-head h1 {
+  letter-spacing: -0.03em;
+}

@@ -1,10 +1,21 @@
 import { z } from "zod";
 
 /**
- * The four themed worlds. Each has a route, a theme file in
- * styles/worlds/, and a schema extension below.
+ * The themed worlds. Each has a route, a theme file in styles/worlds/,
+ * and a schema extension below.
+ *
+ * Order is the order of the descent on the home page and of the nav —
+ * shallow to deep. `teaching` sits directly under `data` because it is
+ * the same expertise pointed outwards.
  */
-export const WORLDS = ["cooking", "games", "sports", "data", "dj"] as const;
+export const WORLDS = [
+  "cooking",
+  "games",
+  "sports",
+  "data",
+  "teaching",
+  "dj",
+] as const;
 export type World = (typeof WORLDS)[number];
 
 /**
@@ -44,6 +55,12 @@ const base = z.object({
   status: z.enum(["draft", "published"]).default("published"),
   tags: z.array(z.string()).default([]),
   cover: z.string().optional(),
+  /**
+   * If the thing is running somewhere you can click, this is where.
+   * On base rather than on one world, so the detail page can render it
+   * for any of them without knowing which world it is in.
+   */
+  live: z.url().optional(),
 });
 
 /**
@@ -137,6 +154,24 @@ export const schemas = {
     result: z.string().optional(),
   }),
 
+  teaching: base.extend({
+    /**
+     * Two things belong here and they are not the same shape: tools that
+     * are live and usable, and write-ups of how to get better at
+     * something. `kind` decides which fields the page renders.
+     */
+    kind: z.enum(["tool", "guide", "note"]).default("tool"),
+    /**
+     * Who it is for, in plain words. Educational projects almost always
+     * skip this and it is the first thing anyone actually needs.
+     */
+    audience: z.string().optional(),
+    repo: z.string().optional(),
+    stack: z.array(z.string()).default([]),
+    metrics: z.array(metric).default([]),
+    call: call.optional(),
+  }),
+
   writing: base.extend({
     call: call.optional(),
   }),
@@ -172,6 +207,12 @@ export const WORLD_META: Record<
     role: "Making things to play",
     kicker: "In progress",
     empty: "The card game is still in the box. Notes coming.",
+  },
+  teaching: {
+    name: "Teaching",
+    role: "Building the tools I wish I had",
+    kicker: "Live now",
+    empty: "Nothing written up yet.",
   },
   sports: {
     name: "Sport",

@@ -66,6 +66,13 @@ export default async function EntryPage({
           </p>
           <h1>{data.title}</h1>
           <p className="article-standfirst">{data.summary}</p>
+          {data.live && (
+            <p>
+              <a className="launch" href={data.live} rel="noreferrer">
+                Open it &rarr;
+              </a>
+            </p>
+          )}
         </header>
       }
     >

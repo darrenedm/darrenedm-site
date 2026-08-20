@@ -1,7 +1,7 @@
 # darrenedm-site
 
-Personal site. Themed sections — cooking, games, sport, data science, DJing —
-running on one shared design system, one content pipeline, one deploy.
+Personal site. Themed sections — cooking, games, sport, data science, teaching,
+DJing — running on one shared design system, one content pipeline, one deploy.
 
 Next.js (App Router) · TypeScript · MDX content validated with Zod · Vercel.
 
@@ -11,10 +11,11 @@ A pile of interests presented flat reads as unfocused rather than broad. So the
 site frames them as one curiosity pointed in several directions — finding out
 how things work, and enjoying the company on the way.
 
-The palette is ocean, taken literally: foam and daylight at the surface, deep
-water below, and the four sections as things living at different depths — deep
-water, bioluminescence, reef, coral. The home page opens in the deep and the
-rest of the site surfaces into light.
+The palette is ocean, taken literally. The home page is a **descent**: it opens
+in foam and daylight and darkens zone by zone, each section living at the depth
+that suits it — reef, coral, twilight, the scattering layer, midnight, the
+floor. Each zone's gradient starts exactly where the one above it ended, so it
+reads as one body of water rather than stacked bands.
 
 ## How the theming works
 
@@ -35,7 +36,7 @@ The skeleton is deliberately monochrome. All colour belongs to the worlds.
 **The rule that keeps it honest:** if adding a new world requires editing a
 shared component, the component is wrong. Fix the primitive once.
 
-Adding a fifth world is three steps:
+Adding a world is three steps:
 
 1. `styles/worlds/<name>.css` — override the tokens
 2. add it to `WORLDS` and `WORLD_META` in `lib/content/schema.ts`

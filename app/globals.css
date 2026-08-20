@@ -4,6 +4,7 @@
 @import "../styles/worlds/dj.css";
 @import "../styles/worlds/games.css";
 @import "../styles/worlds/sports.css";
+@import "../styles/worlds/teaching.css";
 
 /* ══════════  RESET  ══════════ */
 *,
@@ -249,8 +250,21 @@ p {
   --world: #7cc8e5;
 }
 
-.zone[data-zone="midnight"] {
+/* the deep scattering layer — the band so thick with small lights that
+   sonar reads it as a false sea floor. Same water as `deep`, one shade
+   further down, with the only warm colour below the thermocline. */
+.zone[data-zone="scatter"] {
   --from: #073449;
+  --to: #052a3d;
+  --ink: #eaf6f8;
+  --ink-soft: #bcd7e0;
+  --muted: #9cbdc8;
+  --rule: rgba(234, 246, 248, 0.16);
+  --world: #a8e063;
+}
+
+.zone[data-zone="midnight"] {
+  --from: #052a3d;
   --to: #041e2e;
   --ink: #f2ecff;
   --ink-soft: #c0b2dc;
@@ -270,6 +284,7 @@ p {
 }
 
 /* bioluminescence: only down here does anything glow */
+.zone[data-zone="scatter"]::before,
 .zone[data-zone="midnight"]::before,
 .zone[data-zone="abyss"]::before {
   content: "";
@@ -280,6 +295,14 @@ p {
     ellipse 45% 60% at 78% 40%,
     rgba(200, 139, 255, 0.16),
     transparent 68%
+  );
+}
+
+.zone[data-zone="scatter"]::before {
+  background: radial-gradient(
+    ellipse 55% 65% at 72% 50%,
+    rgba(168, 224, 99, 0.11),
+    transparent 70%
   );
 }
 
@@ -678,6 +701,33 @@ p {
   max-width: 54ch;
 }
 
+/* The one link on the page that matters more than the prose: if the
+   thing is running somewhere, this is the button that opens it.
+   Ink on foam rather than the world colour, because some world hues are
+   bright enough that white on them fails contrast — the accent is kept
+   for the underline and the hover. */
+.launch {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+  margin-top: var(--s3);
+  padding: 0.62em 1.15em;
+  font-family: var(--mono);
+  font-size: 0.82rem;
+  letter-spacing: 0.02em;
+  color: var(--foam);
+  background: var(--ink);
+  border-radius: var(--radius);
+  border-bottom: 2px solid var(--world);
+  text-decoration: none;
+  transition: transform 0.2s var(--ease), opacity 0.2s var(--ease);
+}
+
+.launch:hover {
+  transform: translateY(-2px);
+  opacity: 0.9;
+}
+
 .metrics {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr));
@@ -915,6 +965,7 @@ p {
 }
 
 .zone[data-zone="deep"] .creature,
+.zone[data-zone="scatter"] .creature,
 .zone[data-zone="midnight"] .creature,
 .zone[data-zone="abyss"] .creature {
   opacity: 0.14;
@@ -943,6 +994,18 @@ p {
   right: 9%;
   top: 8%;
   animation: pulse-drift 22s ease-in-out infinite alternate;
+}
+
+.creature[data-creature="lanternfish"] {
+  right: 6%;
+  top: 14%;
+  animation: school 26s ease-in-out infinite alternate;
+}
+
+/* the only part of any creature that moves on its own: a row of lights
+   that fades up and down while the fish itself drifts. */
+.creature .photophores {
+  animation: glimmer 4.5s ease-in-out infinite alternate;
 }
 
 .creature[data-creature="anglerfish"] {
@@ -984,6 +1047,24 @@ p {
   }
 }
 
+@keyframes school {
+  from {
+    transform: translate3d(5%, 3%, 0);
+  }
+  to {
+    transform: translate3d(-7%, -5%, 0);
+  }
+}
+
+@keyframes glimmer {
+  from {
+    opacity: 0.25;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
 @keyframes lurk {
   from {
     transform: translate3d(-4%, 0, 0);
@@ -995,6 +1076,7 @@ p {
 
 /* ── marine snow: only falls where the light has gone ── */
 .zone[data-zone="deep"] .snow,
+.zone[data-zone="scatter"] .snow,
 .zone[data-zone="midnight"] .snow,
 .zone[data-zone="abyss"] .snow {
   position: absolute;

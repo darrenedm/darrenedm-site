@@ -91,14 +91,67 @@ the `--from`/`--to` pairs or you get seams.
 
 ---
 
+## Teaching sits under data, not beside it
+
+**Chose** A seventh section, `teaching`, placed directly below `data` in the
+descent — at 700–1000 m, the deep scattering layer.
+
+**Rejected** Two other placements. Folding it into `/data` as a sub-page, and
+putting it near the surface with the warm, sociable sections.
+
+**Why** Folding it in would have buried the only thing on the site a stranger
+can open and use in ten seconds, which is worth more to a recruiter than another
+write-up. Putting it near the surface would have read as a hobby. Below `data`
+it reads as what it is: the same expertise pointed outwards. It also balances
+the descent at three light zones and three dark ones.
+
+**Cost** The two most recruiter-legible sections now sit *below* the
+thermocline, which is the deepest anyone has to scroll before seeing the work.
+Accepted, because the nav reaches both in one click.
+
+---
+
+## Mono display for `/teaching`
+
+**Chose** `--display: var(--mono)` and `--radius: 2px` — the only section set in
+a monospace face.
+
+**Rejected** Another sans section with a new accent colour.
+
+**Why** The section leads with a SQL drilling tool. A page about grinding
+queries should look like the thing rather than like an essay about it, and
+`sports` had already taken the serif. It is also a second proof that a world can
+override more than colour.
+
+**Cost** Mono runs wide and reads loud; headings needed their tracking pulled
+back in by hand. Watch it at large display sizes.
+
+---
+
+## SQL Drills keeps its own visual identity
+
+**Chose** The embedded tool stays aubergine-and-periwinkle, not ocean.
+
+**Rejected** Restyling it to the site's tokens for consistency.
+
+**Why** It is a separate product with its own repo and its own URL, and it
+should survive being seen outside this site. A tool that only makes sense inside
+its parent portfolio is a demo, not a tool.
+
+**Cost** A real seam. Whether it reads as *another product* or as *inconsistent*
+is still open, and the honest answer is that it depends on how it is framed on
+the page around it.
+
+---
+
 ## Sections are limited on purpose
 
-**Chose** Six sections. Film, food-as-reviews and animals were deliberately not
-given their own.
+**Chose** Seven sections. Film, food-as-reviews and animals were deliberately
+not given their own.
 
 **Why** The architecture makes a new section nearly free, which is exactly the
 danger. Empty rooms read as abandoned, not broad. Cooking earned one only when
-real work existed behind it.
+real work existed behind it; teaching earned one when a tool went live.
 
 **Where the rest went** Cats and the dinosaur phase to `/about`; film and food
 to `/writing` with tags.
@@ -137,3 +190,6 @@ carries more than an accent swap — same components, different world.
 - **Photography** — none yet. The layout is built for it.
 - **Voice** — hero, `/about`, `/now` and the zone blurbs are drafted, not
   Darren's own words yet.
+- **Embedding SQL Drills** — the plan is an iframe at `/teaching/sql-drills`;
+  the deployment already omits `X-Frame-Options` so it will work. Right now the
+  page links out instead. Next 16 / Turbopack embed is the untested part.

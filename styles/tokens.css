@@ -6,7 +6,7 @@
    theming work with zero component changes.
 
    The palette is ocean, taken literally: foam and daylight at the
-   surface, deep water below, and the four worlds as things that live
+   surface, deep water below, and the worlds as things that live
    at different depths. Light-dominant and airy — the deep only shows
    up where it earns the drama.
    ══════════════════════════════════════════════════════════════ */
@@ -31,10 +31,11 @@
   --shallow: #12879e;
   --lume: #46e3d1;
 
-  /* ── the four worlds, as ocean depths ──
+  /* ── the worlds, as ocean depths ──
      Declared once so the home page can reference a world's hue
      without being inside that world (see :has() in globals.css). */
   --w-data: #1a7ea8; /* deep water — where the modelling happens */
+  --w-teaching: #457719; /* the scattering layer — a lot of small lights */
   --w-dj: #a855f7; /* bioluminescence — the things that glow */
   --w-games: #0ac4a4; /* reef — bright, shallow, full of play */
   --w-sports: #ff6b4a; /* coral — warm, structural */

@@ -11,6 +11,7 @@ export type CreatureName =
   | "turtle"
   | "dolphin"
   | "squid"
+  | "lanternfish"
   | "anglerfish"
   | "dumbo";
 
@@ -65,6 +66,39 @@ const shapes: Record<CreatureName, React.ReactNode> = {
         <path d="M100,72 C100,94 98,106 100,118" />
         <path d="M109,72 C114,92 109,106 115,118" />
         <path d="M118,70 C126,88 120,104 130,118" />
+      </g>
+    </>
+  ),
+
+  /**
+   * Lanternfish of the deep scattering layer. Interior detail is
+   * invisible in a single-colour silhouette, so every light sits outside
+   * the body: bumps along the belly and loose motes in the water around
+   * it. That scatter IS the zone — a band so thick with small lights
+   * that sonar reads it as a false sea floor.
+   */
+  lanternfish: (
+    <>
+      <path d="M40,62 C52,40 78,28 108,26 C146,24 176,38 182,62 C176,86 146,100 108,98 C78,96 52,84 40,62 Z" />
+      <path d="M40,62 L8,40 L18,62 L8,84 Z" />
+      <path d="M96,28 L108,8 L124,32 Z" />
+      <path d="M56,44 L64,32 L70,47 Z" />
+      <path d="M84,94 L92,110 L106,92 Z" />
+      <g className="photophores">
+        <circle cx="66" cy="88" r="3.4" />
+        <circle cx="88" cy="97" r="3.4" />
+        <circle cx="110" cy="101" r="3.4" />
+        <circle cx="132" cy="97" r="3.4" />
+        <circle cx="152" cy="88" r="3.4" />
+        <circle cx="18" cy="26" r="2.6" />
+        <circle cx="70" cy="13" r="2.4" />
+        <circle cx="168" cy="16" r="2.2" />
+        <circle cx="196" cy="44" r="2.2" />
+        <circle cx="186" cy="98" r="2.6" />
+        <circle cx="146" cy="114" r="2.2" />
+        <circle cx="96" cy="120" r="2" />
+        <circle cx="30" cy="102" r="2.4" />
+        <circle cx="9" cy="60" r="1.9" />
       </g>
     </>
   ),

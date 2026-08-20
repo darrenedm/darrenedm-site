@@ -42,11 +42,20 @@ const DESCENT = [
   {
     world: "data",
     zone: "deep",
-    depth: "200–1000 m",
+    depth: "200–700 m",
     layer: "Twilight",
     creature: "squid",
     blurb:
       "The day job. Finding the pattern in a mess, then arguing about what it actually means.",
+  },
+  {
+    world: "teaching",
+    zone: "scatter",
+    depth: "700–1000 m",
+    layer: "Scattering layer",
+    creature: "lanternfish",
+    blurb:
+      "Most of what I know, someone took the time to hand me. So I build the things I wanted back then — currently a SQL trainer that marks your answer by running it rather than by reading it.",
   },
   {
     world: "dj",
@@ -70,9 +79,9 @@ const hero = (
       Hi — I like figuring out how <span className="accent">things work</span>.
     </h1>
     <p className="hero-sub">
-      Data scientist by trade. I build card games, play records, cook too
-      ambitiously on weeknights, and think about football more than is
-      defensible.
+      Data scientist by trade. I build tools that teach, design card games,
+      play records, cook too ambitiously on weeknights, and think about
+      football more than is defensible.
     </p>
     <p className="hero-warmth">
       Mostly I&rsquo;m just curious — about systems, about animals, about why

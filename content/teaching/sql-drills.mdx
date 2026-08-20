@@ -1,0 +1,115 @@
+---
+title: A SQL trainer that marks your answer by running it
+summary: >-
+  Fifty interview-grade SQL questions with a grader that has no opinion about
+  your style. It executes your query against a Postgres database running inside
+  the browser tab and compares the rows that come back. There is no server.
+date: 2026-08-19
+status: published
+kind: tool
+tags: [sql, postgres, wasm, teaching, autograder]
+audience: >-
+  Anyone prepping for a data science or analytics interview — starting with me.
+live: https://sqldrills.vercel.app
+repo: https://github.com/darrenedm/sql-drills
+stack: [PGlite, PostgreSQL, TypeScript, Vitest, Playwright]
+metrics:
+  - label: Runs on
+    value: Postgres 18.3, in the tab
+  - label: Backend
+    value: None
+  - label: Questions live
+    value: 5 of 50 planned
+  - label: Anti-hardcoding
+    value: Twin seeds per dataset
+call:
+  decision: Grade by running the query and comparing the result set.
+  alternative: >-
+    Grade the SQL itself — normalise the text, or parse it to an AST and check
+    the shape against a reference answer.
+  whyNot: >-
+    Almost every question has several correct answers. A join and a correlated
+    subquery can return identical rows; so can four different ways of writing
+    the same window function. A grader that reads your query is grading your
+    style and calling it correctness, and every false negative teaches the
+    learner something untrue. Running it is the only check that answers the
+    question actually being asked, which is whether the rows are right.
+  cost: >-
+    Two real ones. A result diff cannot tell you *why* you are wrong the way a
+    parser could — you get two tables and have to spot it yourself. And it
+    cannot enforce a constraint like "solve this with a window function", since
+    a query that cheats still returns the right rows. That needs an AST check.
+    The field for it exists in the schema and is deliberately unenforced until
+    it does.
+---
+
+Terminal-only practice was the version I built first, and I did not use it. So
+this one is a page you open, with a database in it.
+
+## The database is in the tab
+
+The whole thing runs on [PGlite](https://pglite.dev) — PostgreSQL compiled to
+WebAssembly. Not a Postgres-like dialect, not a translation layer: the actual
+engine, executing in the browser. Window functions, CTEs, `DISTINCT ON`,
+`generate_series` — all of it behaves the way it will behave in the interview,
+because it *is* the same code.
+
+Which means there is no backend. No connection pool sized for a homepage that
+gets three visitors a week, no query queue, no rate limit, no bill. The most
+scalable design turned out to be the one where the server does not exist.
+
+## Twin seeds, so you cannot hardcode
+
+The obvious hole in a run-it-and-compare grader is that you can skip the SQL and
+just type the answer:
+
+```sql
+SELECT 'Ireland' AS country, 4 AS connections;
+```
+
+So every dataset has **two seeds** — a visible one you explore while writing,
+and a hidden one your query is also graded against. Same schema, same generator,
+different data. An answer that hardcodes passes the first and fails the second,
+and the failure message says exactly that.
+
+This is the same trick as a held-out test set, and it is worth noticing that
+it is the same trick. The visible seed is your training data. Anything you
+learn that is specific to *those rows* rather than to the question is
+overfitting, and the hidden seed is what catches it.
+
+## What the spike falsified
+
+Phase 0 existed to find out what was untrue before any of it was built on, and
+it earned its keep twice:
+
+- PGlite ships **PostgreSQL 18.3**, not 17, which changes what you can assume
+  about syntax.
+- **`statement_timeout` does not fire in the WASM build.** Worse, a JavaScript
+  timer racing it cannot fire either, because a running query blocks the event
+  loop it would need to be scheduled on.
+
+The second one is not a detail — it decided the architecture. A runaway query
+cannot be cancelled from inside the page, so the database lives in a Web Worker
+and `worker.terminate()` is the *entire* cancellation mechanism. Every timeout
+in the app is a terminated worker and a fresh one booted in its place.
+
+## Postgres, annotated for BigQuery
+
+The engine is Postgres, but my daily dialect is BigQuery, and quietly drilling
+the wrong syntax for a year would be an expensive way to practise. So every
+question carries a note where the two diverge — `QUALIFY`, `ARRAY_AGG`,
+`EXCEPT`/`REPLACE`, date handling. The dialect gap is content, not a footnote.
+
+<span className="todo">
+[TODO — Darren's own account: why you built this rather than grinding
+LeetCode-style SQL, what you noticed about your own gaps once the grader
+started telling you the truth, and what happened the first time you handed it
+to someone else.]
+</span>
+
+## Honestly incomplete
+
+Five questions of a planned fifty, one dataset of three. The constraint checker
+is declared and unenforced. Spaced repetition is designed and unbuilt.
+
+It is up anyway, because a tool nobody can open teaches nobody anything.
