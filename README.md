@@ -1,6 +1,6 @@
 # darrenedm-site
 
-Personal site. Four themed worlds — data science, DJing, games, sport —
+Personal site. Themed sections — cooking, games, sport, data science, DJing —
 running on one shared design system, one content pipeline, one deploy.
 
 Next.js (App Router) · TypeScript · MDX content validated with Zod · Vercel.
@@ -64,6 +64,13 @@ Project and essay frontmatter can carry a `call` block — the decision, the
 alternative rejected, why, and what it cost. It renders as a standing section on
 the page. It is the most interesting part of any technical writeup and the part
 almost everyone leaves out.
+
+## Docs
+
+- [`docs/DESIGN.md`](docs/DESIGN.md) — the token system, the ocean descent, the
+  contrast method, motion rules
+- [`docs/DECISIONS.md`](docs/DECISIONS.md) — what was chosen, what was rejected,
+  and why
 
 ## Local development
 
