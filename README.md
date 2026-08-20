@@ -7,9 +7,9 @@ Next.js (App Router) · TypeScript · MDX content validated with Zod · Vercel.
 
 ## The idea
 
-Four interests presented flat read as unfocused rather than broad. So the site
-frames them as one curiosity pointed in four directions — finding out how
-things work, and enjoying the company on the way.
+A pile of interests presented flat reads as unfocused rather than broad. So the
+site frames them as one curiosity pointed in several directions — finding out
+how things work, and enjoying the company on the way.
 
 The palette is ocean, taken literally: foam and daylight at the surface, deep
 water below, and the four sections as things living at different depths — deep
